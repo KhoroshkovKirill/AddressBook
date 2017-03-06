@@ -10,8 +10,7 @@ import java.util.TreeMap;
  * Created by khoroshkovkirill on 16.02.17.
  */
 public class AddressBook {
-    private Map<String,Address> location;//Использовать класс как ключ?
-    //А если просто наследовать map?
+    private Map<String,Address> location;
     public AddressBook(){
         this.location = new TreeMap<>();
     }
@@ -58,12 +57,8 @@ public class AddressBook {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, Address> entry : this.location.entrySet()){
-            sb.append(entry.getKey() +' '+ entry.getValue().toString());
-        }
-        return sb.toString();
+    public String toString(){
+        return location.toString();
     }
 
     @Override//что не так?
