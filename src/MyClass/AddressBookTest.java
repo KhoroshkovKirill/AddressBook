@@ -24,7 +24,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void removePerson() throws Exception {
+    public void removePerson(){
         AddressBook ab1 = new AddressBook();
         AddressBook ab2 = new AddressBook();
         ab2.addPerson("name","street","house","flat");
@@ -33,7 +33,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getAddress() throws Exception {
+    public void getAddress(){
         Address shf = new Address("street","house","flat");
         AddressBook ab = new AddressBook();
         ab.addPerson("name","street","house","flat");
@@ -41,7 +41,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void changeAddress() throws Exception {
+    public void changeAddress(){
         AddressBook ab1 = new AddressBook();
         AddressBook ab2 = new AddressBook();
         ab1.addPerson("name","street","house","flat");
@@ -51,7 +51,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void whoIsThere() throws Exception {
+    public void whoIsThere(){
         AddressBook ab = new AddressBook();
         ab.addPerson("name1","street","house","flat222");
         ab.addPerson("name2","street","house222","flat");
@@ -63,7 +63,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void whoIsThere1() throws Exception {
+    public void whoIsThere1(){
         AddressBook ab = new AddressBook();
         ab.addPerson("name1","street","house444","flat222");
         ab.addPerson("name2","street","house","flat");
