@@ -42,4 +42,12 @@ public class Address {
     public String toString() {
         return street +' '+ house +' '+ flat;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (! (obj instanceof Address)) return false;
+        return (this.street.equals(((Address) obj).street) &&
+                this.house.equals(((Address) obj).house) &&
+                this.flat.equals(((Address) obj).flat));
+    }
 }
