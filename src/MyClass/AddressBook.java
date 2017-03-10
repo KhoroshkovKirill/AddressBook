@@ -41,14 +41,20 @@ final class AddressBook {
         else return false;
     }
 
-    public Address getAddress(String name) {//Что мне лучше вернуть?
+    public Address getAddress(String name) {
         return this.location.get(name);
     }
 
-    public void changeAddress(String name, String street, String house, String flat) {
-        this.location.get(name).setStreet(street);
-        this.location.get(name).setHouse(house);
-        this.location.get(name).setFlat(flat);
+    public boolean changeAddress(String name, String street, String house, String flat) {
+        if (location.containsKey(name)) {
+            this.location.get(name).setStreet(street);
+            this.location.get(name).setHouse(house);
+            this.location.get(name).setFlat(flat);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public List<String> whoIsThere(String street) {

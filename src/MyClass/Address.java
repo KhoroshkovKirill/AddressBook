@@ -3,7 +3,7 @@ package MyClass;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-public class Address {
+final class Address {
     private String street;
     private String house;
     private String flat;
