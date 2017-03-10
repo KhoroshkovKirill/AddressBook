@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-public class AddressBook {
+final class AddressBook {
     private Map<String, Address> location;
 
     public AddressBook() {
@@ -16,6 +16,11 @@ public class AddressBook {
     public AddressBook(Map<String, Address> location) {
         this.location = new TreeMap<>();
         this.location.putAll(location);
+    }
+
+    public AddressBook(AddressBook ab) {
+        this.location = new TreeMap<>();
+        this.location.putAll(ab.location);
     }
 
     public boolean addPerson(String name, String street, String house, String flat) {

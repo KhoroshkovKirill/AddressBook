@@ -45,8 +45,8 @@ public class AddressBookTest {
         AddressBook ab1 = new AddressBook();
         AddressBook ab2 = new AddressBook();
         ab1.addPerson("name","street","house","flat");
-        ab1.changeAddress("name","street1","house1","flat1");
-        ab2.addPerson("name","street1","house1","flat1");
+        ab1.changeAddress("name","street111","house111","flat111");
+        ab2.addPerson("name","street111","house111","flat111");
         assertEquals(ab1,ab2);
     }
 
@@ -67,11 +67,19 @@ public class AddressBookTest {
         AddressBook ab = new AddressBook();
         ab.addPerson("name1","street","house444","flat222");
         ab.addPerson("name2","street","house","flat");
-        ab.addPerson("name3","street","house","flat");
+        ab.addPerson("name3","street","house","flat555");
         List<String> s = new ArrayList<>();
         s.add("name2");
         s.add("name3");
         assertEquals(s,ab.whoIsThere("street","house"));
     }
 
+    @Test
+    public void copyAddressBook(){
+        AddressBook ab = new AddressBook();
+        ab.addPerson("name1","street1","house1","flat1");
+        ab.addPerson("name2","street2","house2","flat2");
+        AddressBook copiedAb = new AddressBook(ab);
+        assertEquals(copiedAb,ab);
+    }
 }
