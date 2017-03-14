@@ -6,24 +6,23 @@ import java.util.*;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-final class AddressBook {
+final class AddressBook {//кидать исключения при неправидьных именах или адресах?
     private Map<String, Address> location;
 
     public AddressBook() {
         this.location = new TreeMap<>();
     }
 
-    public AddressBook(Map<String, Address> location) {
-        this.location = new TreeMap<>();
+    public AddressBook(Map<String, Address> location) {//тут
+        this();
         this.location.putAll(location);
     }
 
     public AddressBook(AddressBook ab) {
-        this.location = new TreeMap<>();
-        this.location.putAll(ab.location);
+        this(ab.location);
     }
 
-    public boolean addPerson(String name, String street, String house, String flat) {
+    public boolean addPerson(String name, String street, String house, String flat) {//тут
         if (location.containsKey(name)){
             return false;
         }
