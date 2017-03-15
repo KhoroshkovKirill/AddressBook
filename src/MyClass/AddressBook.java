@@ -6,14 +6,15 @@ import java.util.*;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-final class AddressBook {//кидать исключения при неправидьных именах или адресах?
+final class AddressBook {//кидать исключения при неправильных именах или адресах?
     private Map<String, Address> location;
 
     public AddressBook() {
         this.location = new TreeMap<>();
     }
 
-    public AddressBook(Map<String, Address> location) {//тут
+    public AddressBook(Map<String, Address> location) {//тут(putAll заменить на цикл, обращающийся к addPerson)
+        //За одно выполнение этого конструктора addPerson может кинуть кучу исключений(Это возможно?)
         this();
         this.location.putAll(location);
     }
@@ -22,7 +23,8 @@ final class AddressBook {//кидать исключения при неправ
         this(ab.location);
     }
 
-    public boolean addPerson(String name, String street, String house, String flat) {//тут
+    public boolean addPerson(String name, String street, String house, String flat) {//тут(А здесь кидать Exception)
+        //Можно будеть сделать addPerson(Map<String, Address> location) ну или addPerson(AddressBook ab)
         if (location.containsKey(name)){
             return false;
         }

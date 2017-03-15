@@ -8,6 +8,7 @@ final class Address {
     private String house;
     private String flat;
 
+    //как сделать, чтобы методы(не все) были видны только классам из пакета
     public Address(String street, String house, String flat){
         this.street = street;
         this.house = house;
