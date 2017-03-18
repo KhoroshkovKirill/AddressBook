@@ -56,7 +56,9 @@ public class AddressBookTest {
         List<String> s = new ArrayList<>();
         s.add("name1");
         s.add("name2");
-        assertEquals(s,ab.whoIsThere("street"));
+        List<String> wit = ab.whoIsThere("street");
+        Collections.sort(wit);
+        assertEquals(s,wit);
     }
 
     @Test
@@ -68,7 +70,9 @@ public class AddressBookTest {
         List<String> s = new ArrayList<>();
         s.add("name2");
         s.add("name3");
-        assertEquals(s,ab.whoIsThere("street","house"));
+        List<String> wit = ab.whoIsThere("street","house");
+        Collections.sort(wit);
+        assertEquals(s,wit);
     }
 
     @Test
