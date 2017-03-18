@@ -2,10 +2,7 @@ package MyClass;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AddressBookTest {
     @Test
     public void addPerson(){
-        Map<String,Address> location = new TreeMap<>();
+        Map<String,Address> location = new HashMap<>();
         Address shf = new Address("street","house","flat");
         location.put("name",shf);
         AddressBook ab = new AddressBook();
@@ -81,5 +78,10 @@ public class AddressBookTest {
         ab.addPerson("name2","street2","house2","flat2");
         AddressBook copiedAb = new AddressBook(ab);
         assertEquals(copiedAb,ab);
+    }
+
+    @Test
+    public void changeAddressInCopiedAddressBook(){
+
     }
 }

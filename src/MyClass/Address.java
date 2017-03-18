@@ -3,12 +3,11 @@ package MyClass;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-final class Address {
+public class Address {
     private String street;
     private String house;
     private String flat;
 
-    //как сделать, чтобы методы(не все) были видны только классам из пакета
     public Address(String street, String house, String flat){
         this.street = street;
         this.house = house;
@@ -27,18 +26,6 @@ final class Address {
         return flat;
     }
 
-    public void setStreet(String street){
-        this.street = street;
-    }
-
-    public void setHouse(String house){
-        this.house = house;
-    }
-
-    public void setFlat(String flat){
-        this.flat = flat;
-    }
-
     @Override
     public String toString() {
         return street +' '+ house +' '+ flat;
@@ -50,5 +37,10 @@ final class Address {
         return (this.street.equals(((Address) obj).street) &&
                 this.house.equals(((Address) obj).house) &&
                 this.flat.equals(((Address) obj).flat));
+    }
+
+    @Override
+    public int hashCode(){
+        return 33 * this.street.hashCode() + 13 * this.house.hashCode() + this.flat.hashCode();
     }
 }

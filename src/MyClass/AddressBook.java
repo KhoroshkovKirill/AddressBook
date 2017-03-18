@@ -6,15 +6,14 @@ import java.util.*;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-final class AddressBook {//кидать исключения при неправильных именах или адресах?
+final class AddressBook {
     private Map<String, Address> location;
 
     public AddressBook() {
-        this.location = new TreeMap<>();
+        this.location = new HashMap<>();
     }
 
-    public AddressBook(Map<String, Address> location) {//тут(putAll заменить на цикл, обращающийся к addPerson)
-        //За одно выполнение этого конструктора addPerson может кинуть кучу исключений(Это возможно?)
+    public AddressBook(Map<String, Address> location) {
         this();
         this.location.putAll(location);
     }
@@ -23,43 +22,45 @@ final class AddressBook {//кидать исключения при неправ
         this(ab.location);
     }
 
-    public boolean addPerson(String name, String street, String house, String flat) {//тут(А здесь кидать Exception)
-        //Можно будеть сделать addPerson(Map<String, Address> location) ну или addPerson(AddressBook ab)
-        if (location.containsKey(name)){
-            return false;
+    public void addPerson(String name, String street, String house, String flat) {
+        if (name == null){
+            throw new IllegalArgumentException("Name cannot be null");
         }
-        else {
-            this.location.put(name, new Address(street, house, flat));
-            return true;
+        if (location.containsKey(name)) {
+            throw new IllegalArgumentException("This name is already contained");
         }
+        this.location.put(name, new Address(street, house, flat));
     }
 
-    public boolean removePerson(String name) {
-        if (location.containsKey(name)) {
-            this.location.remove(name);
-            return true;
+    public void removePerson(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("Name cannot be null");
         }
-        else return false;
+        if (!location.containsKey(name)) {
+            throw new IllegalArgumentException("Name is absent");
+        }
+        this.location.remove(name);
     }
 
     public Address getAddress(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("Name cannot be null");
+        }
         return this.location.get(name);
     }
 
-    public boolean changeAddress(String name, String street, String house, String flat) {
-        if (location.containsKey(name)) {
-            this.location.get(name).setStreet(street);
-            this.location.get(name).setHouse(house);
-            this.location.get(name).setFlat(flat);
-            return true;
+    public void changeAddress(String name, String street, String house, String flat) {
+        if (name == null) {
+            throw new IllegalArgumentException("Name cannot be null");
         }
-        else{
-            return false;
+        if (!this.location.containsKey(name)) {
+            throw new IllegalArgumentException("Name is absent");
         }
+        this.location.put(name, new Address(street, house, flat));
     }
-
+//////////////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     public List<String> whoIsThere(String street) {
-        ArrayList<String> names = new ArrayList<>();
+        List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
             if (entry.getValue().getStreet().equals(street))
                 names.add(entry.getKey());
@@ -68,14 +69,14 @@ final class AddressBook {//кидать исключения при неправ
     }
 
     public List<String> whoIsThere(String street, String house) {
-        ArrayList<String> names = new ArrayList<>();
+        List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
             if (entry.getValue().getStreet().equals(street) && entry.getValue().getHouse().equals(house))
                 names.add(entry.getKey());
         }
         return names;
     }
-
+/////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Override
     public String toString() {
         return location.toString();
@@ -88,7 +89,7 @@ final class AddressBook {//кидать исключения при неправ
 
     @Override
     public int hashCode() {
-        return location != null ? location.hashCode() : 0;
+        return location.hashCode();
     }
 
 }
