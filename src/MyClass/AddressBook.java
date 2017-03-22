@@ -13,7 +13,7 @@ final class AddressBook {
         this.location = new HashMap<>();
     }
 
-    public AddressBook(Map<String, Address> location) {
+    public AddressBook(Map<String, Address> location) {//В map ключ же не может быть равен null
         this();
         this.location.putAll(location);
     }
@@ -24,7 +24,7 @@ final class AddressBook {
 
     public void addPerson(String name, String street, String house, String flat) {
         if (name == null){
-            throw new IllegalArgumentException("Name cannot be null");
+            throw new IllegalArgumentException("Name cannot be null");//осталоное надо проверять?
         }
         if (location.containsKey(name)) {
             throw new IllegalArgumentException("This name is already contained");
@@ -60,6 +60,9 @@ final class AddressBook {
     }
 //////////////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     public List<String> whoIsThere(String street) {
+        if (street == null) {
+            throw new IllegalArgumentException("Arguments cannot be null");//Вохможно по null искать?
+        }
         List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
             if (entry.getValue().getStreet().equals(street))
@@ -69,6 +72,9 @@ final class AddressBook {
     }
 
     public List<String> whoIsThere(String street, String house) {
+        if (street == null || house == null) {
+            throw new IllegalArgumentException("Arguments cannot be null");
+        }
         List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
             if (entry.getValue().getStreet().equals(street) && entry.getValue().getHouse().equals(house))

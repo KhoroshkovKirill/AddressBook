@@ -84,8 +84,4 @@ public class AddressBookTest {
         assertEquals(copiedAb,ab);
     }
 
-    @Test
-    public void changeAddressInCopiedAddressBook(){
-
-    }
 }
