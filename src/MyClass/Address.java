@@ -3,12 +3,15 @@ package MyClass;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-public class Address {
-    private String street;
-    private String house;
-    private String flat;
+final class Address {
+    final private String street;
+    final private String house;
+    final private String flat;
 
     public Address(String street, String house, String flat){
+        if (street == null || house == null || flat == null) {
+            throw new IllegalArgumentException("Arguments cannot be null");
+        }
         this.street = street;
         this.house = house;
         this.flat = flat;
@@ -33,7 +36,15 @@ public class Address {
 
     @Override
     public boolean equals(Object obj) {
-        if (! (obj instanceof Address)) return false;
+        if (obj == null) {
+            throw new IllegalArgumentException("Arguments cannot be null");
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (! (obj instanceof Address)) {
+            return false;
+        }
         return (this.street.equals(((Address) obj).street) &&
                 this.house.equals(((Address) obj).house) &&
                 this.flat.equals(((Address) obj).flat));

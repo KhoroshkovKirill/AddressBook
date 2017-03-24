@@ -6,15 +6,18 @@ import java.util.*;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-final class AddressBook {
-    private Map<String, Address> location;
+final public class AddressBook {//Erlang и  javafx глянуть
+    final private Map<String, Address> location;
 
     public AddressBook() {
         this.location = new HashMap<>();
     }
 
-    public AddressBook(Map<String, Address> location) {//В map ключ же не может быть равен null
+    public AddressBook(Map<String, Address> location) {//Address проверить на null
         this();
+        if (location == null){
+            throw new IllegalArgumentException("Arguments cannot be null");
+        }
         this.location.putAll(location);
     }
 
@@ -24,7 +27,7 @@ final class AddressBook {
 
     public void addPerson(String name, String street, String house, String flat) {
         if (name == null){
-            throw new IllegalArgumentException("Name cannot be null");//осталоное надо проверять?
+            throw new IllegalArgumentException("Name cannot be null");
         }
         if (location.containsKey(name)) {
             throw new IllegalArgumentException("This name is already contained");
@@ -58,15 +61,17 @@ final class AddressBook {
         }
         this.location.put(name, new Address(street, house, flat));
     }
-//////////////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     public List<String> whoIsThere(String street) {
         if (street == null) {
-            throw new IllegalArgumentException("Arguments cannot be null");//Вохможно по null искать?
+            throw new IllegalArgumentException("Arguments cannot be null");
         }
         List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
-            if (entry.getValue().getStreet().equals(street))
-                names.add(entry.getKey());
+            final String name = entry.getKey();
+            final Address address = entry.getValue();
+            if (address.getStreet().equals(street))
+                names.add(name);
         }
         return names;
     }
@@ -77,12 +82,14 @@ final class AddressBook {
         }
         List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
-            if (entry.getValue().getStreet().equals(street) && entry.getValue().getHouse().equals(house))
-                names.add(entry.getKey());
+            final String name = entry.getKey();
+            final Address address = entry.getValue();
+            if (address.getStreet().equals(street) && address.getHouse().equals(house))
+                names.add(name);
         }
         return names;
     }
-/////////////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
     @Override
     public String toString() {
         return location.toString();
@@ -90,6 +97,12 @@ final class AddressBook {
 
     @Override
     public boolean equals(Object o) {
+        if (o == null) {
+            throw new IllegalArgumentException("Arguments cannot be null");
+        }
+        if (this == o) {
+            return true;
+        }
         return ((o instanceof AddressBook) && this.location.equals(((AddressBook) o).location));
     }
 
