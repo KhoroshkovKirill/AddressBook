@@ -18,20 +18,20 @@ final class Address {
     }
 
     public String getStreet(){
-        return street;
+        return this.street;
     }
 
     public String getHouse(){
-        return house;
+        return this.house;
     }
 
     public String getFlat(){
-        return flat;
+        return this.flat;
     }
 
     @Override
     public String toString() {
-        return street +' '+ house +' '+ flat;
+        return this.street +' '+ this.house +' '+ this.flat;
     }
 
     @Override

@@ -29,7 +29,7 @@ final public class AddressBook {//Erlang и  javafx глянуть
         if (name == null){
             throw new IllegalArgumentException("Name cannot be null");
         }
-        if (location.containsKey(name)) {
+        if (this.location.containsKey(name)) {
             throw new IllegalArgumentException("This name is already contained");
         }
         this.location.put(name, new Address(street, house, flat));
@@ -39,7 +39,7 @@ final public class AddressBook {//Erlang и  javafx глянуть
         if (name == null) {
             throw new IllegalArgumentException("Name cannot be null");
         }
-        if (!location.containsKey(name)) {
+        if (!this.location.containsKey(name)) {
             throw new IllegalArgumentException("Name is absent");
         }
         this.location.remove(name);
@@ -92,7 +92,7 @@ final public class AddressBook {//Erlang и  javafx глянуть
 
     @Override
     public String toString() {
-        return location.toString();
+        return this.location.toString();
     }
 
     @Override
@@ -108,7 +108,7 @@ final public class AddressBook {//Erlang и  javafx глянуть
 
     @Override
     public int hashCode() {
-        return location.hashCode();
+        return this.location.hashCode();
     }
 
 }
