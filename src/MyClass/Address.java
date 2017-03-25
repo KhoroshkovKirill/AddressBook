@@ -52,6 +52,10 @@ final class Address {
 
     @Override
     public int hashCode(){
-        return 33 * this.street.hashCode() + 13 * this.house.hashCode() + this.flat.hashCode();
+        int result = 1;
+        result = 31 * result + this.street.hashCode();
+        result = 31 * result + this.house.hashCode();
+        result = 31 * result + this.flat.hashCode();
+        return result;
     }
 }

@@ -6,19 +6,19 @@ import java.util.*;
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-final public class AddressBook {//Erlang и  javafx глянуть
+final public class AddressBook {
     final private Map<String, Address> location;
 
     public AddressBook() {
         this.location = new HashMap<>();
     }
 
-    public AddressBook(Map<String, Address> location) {//Address проверить на null
+    public AddressBook(Map<String, Address> location) {
         this();
         if (location == null){
             throw new IllegalArgumentException("Arguments cannot be null");
         }
-        this.location.putAll(location);
+        this.location.putAll(location);//Кинет NullPointerException, если K или V равен null?
     }
 
     public AddressBook(AddressBook ab) {
@@ -35,14 +35,16 @@ final public class AddressBook {//Erlang и  javafx глянуть
         this.location.put(name, new Address(street, house, flat));
     }
 
-    public void removePerson(String name) {
+    public Address removePerson(String name) {
         if (name == null) {
             throw new IllegalArgumentException("Name cannot be null");
         }
         if (!this.location.containsKey(name)) {
             throw new IllegalArgumentException("Name is absent");
         }
+        final Address curAddress = this.location.get(name);
         this.location.remove(name);
+        return curAddress;
     }
 
     public Address getAddress(String name) {
@@ -68,10 +70,10 @@ final public class AddressBook {//Erlang и  javafx глянуть
         }
         List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
-            final String name = entry.getKey();
-            final Address address = entry.getValue();
-            if (address.getStreet().equals(street))
-                names.add(name);
+            final String curName = entry.getKey();
+            final Address curAddress = entry.getValue();
+            if (curAddress.getStreet().equals(street))
+                names.add(curName);
         }
         return names;
     }
@@ -82,10 +84,10 @@ final public class AddressBook {//Erlang и  javafx глянуть
         }
         List<String> names = new ArrayList<>();
         for (Map.Entry<String, Address> entry : this.location.entrySet()) {
-            final String name = entry.getKey();
-            final Address address = entry.getValue();
-            if (address.getStreet().equals(street) && address.getHouse().equals(house))
-                names.add(name);
+            final String curName = entry.getKey();
+            final Address curAddress = entry.getValue();
+            if (curAddress.getStreet().equals(street) && curAddress.getHouse().equals(house))
+                names.add(curName);
         }
         return names;
     }

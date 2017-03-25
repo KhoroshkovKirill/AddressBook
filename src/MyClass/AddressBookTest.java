@@ -30,6 +30,14 @@ public class AddressBookTest {
     }
 
     @Test
+    public void removePerson2(){
+        Address addr = new Address("street","house","flat");
+        AddressBook ab2 = new AddressBook();
+        ab2.addPerson("name","street","house","flat");
+        assertEquals(addr,ab2.removePerson("name"));
+    }
+
+    @Test
     public void getAddress(){
         Address shf = new Address("street","house","flat");
         AddressBook ab = new AddressBook();
