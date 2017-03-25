@@ -18,21 +18,28 @@ final public class AddressBook {
         if (location == null){
             throw new IllegalArgumentException("Arguments cannot be null");
         }
-        this.location.putAll(location);//Кинет NullPointerException, если K или V равен null?
+        this.location.putAll(location);//Кинет NullPointerException, если K или V равен null?(Как сделать, чтобы кидал?)
     }
 
     public AddressBook(AddressBook ab) {
         this(ab.location);
     }
 
-    public void addPerson(String name, String street, String house, String flat) {
+    public void addPerson(String name, Address address) {
         if (name == null){
             throw new IllegalArgumentException("Name cannot be null");
+        }
+        if (address == null){
+            throw new IllegalArgumentException("Address cannot be null");
         }
         if (this.location.containsKey(name)) {
             throw new IllegalArgumentException("This name is already contained");
         }
-        this.location.put(name, new Address(street, house, flat));
+        this.location.put(name,address);
+    }
+
+    public void addPerson(String name, String street, String house, String flat) {
+        addPerson(name, new Address(street, house, flat));
     }
 
     public Address removePerson(String name) {
