@@ -21,7 +21,7 @@ final public class AddressBook {
         if (location.containsKey(null) || location.containsValue(null)){
             throw new IllegalArgumentException("Argument cannot contain null");
         }
-        this.location.putAll(location);//Кинет NullPointerException, если K или V равен null?(Как сделать, чтобы кидал?)
+        this.location.putAll(location);
     }
 
     public AddressBook(AddressBook ab) {
