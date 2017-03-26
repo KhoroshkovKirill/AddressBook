@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Created by khoroshkovkirill on 27.02.17.
@@ -90,6 +91,30 @@ public class AddressBookTest {
         ab.addPerson("name2","street2","house2","flat2");
         AddressBook copiedAb = new AddressBook(ab);
         assertEquals(copiedAb,ab);
+    }
+
+    @Test
+    public void ifArgumentOfConstructorContainNullInValues(){
+        Map<String,Address> location = new HashMap<>();
+        location.put("name",null);
+        try {
+            new AddressBook(location);
+            fail("IllegalArgumentException");
+        } catch (IllegalArgumentException ex) {
+            assertEquals("Argument cannot contain null", ex.getMessage());
+        }
+    }
+
+    @Test()
+    public void ifArgumentOfConstructorContainNullInKeys(){
+        Map<String,Address> location = new HashMap<>();
+        location.put(null, new Address("street","house","flat"));
+        try {
+            new AddressBook(location);
+            fail("IllegalArgumentException");
+        } catch (IllegalArgumentException ex) {
+            assertEquals("Argument cannot contain null", ex.getMessage());
+        }
     }
 
 }

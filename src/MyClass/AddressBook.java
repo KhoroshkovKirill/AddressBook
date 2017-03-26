@@ -16,7 +16,10 @@ final public class AddressBook {
     public AddressBook(Map<String, Address> location) {
         this();
         if (location == null){
-            throw new IllegalArgumentException("Arguments cannot be null");
+            throw new IllegalArgumentException("Argument cannot be null");
+        }
+        if (location.containsKey(null) || location.containsValue(null)){
+            throw new IllegalArgumentException("Argument cannot contain null");
         }
         this.location.putAll(location);//Кинет NullPointerException, если K или V равен null?(Как сделать, чтобы кидал?)
     }
