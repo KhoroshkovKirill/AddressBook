@@ -109,9 +109,6 @@ final public class AddressBook {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) {
-            throw new IllegalArgumentException("Arguments cannot be null");
-        }
         if (this == o) {
             return true;
         }

@@ -36,9 +36,6 @@ final class Address {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            throw new IllegalArgumentException("Arguments cannot be null");
-        }
         if (this == obj) {
             return true;
         }
