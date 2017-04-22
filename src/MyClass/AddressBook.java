@@ -25,7 +25,7 @@ final public class AddressBook {
     }
 
     public AddressBook(AddressBook ab) {
-        this(ab.location);
+        location = new HashMap<>(ab.location);
     }
 
     public void addPerson(String name, Address address) {
@@ -52,9 +52,7 @@ final public class AddressBook {
         if (!this.location.containsKey(name)) {
             throw new IllegalArgumentException("Name is absent");
         }
-        final Address curAddress = this.location.get(name);
-        this.location.remove(name);
-        return curAddress;
+        return this.location.remove(name);
     }
 
     public Address getAddress(String name) {
@@ -64,14 +62,18 @@ final public class AddressBook {
         return this.location.get(name);
     }
 
-    public void changeAddress(String name, String street, String house, String flat) {
+    public void changeAddress(String name, Address address){
         if (name == null) {
             throw new IllegalArgumentException("Name cannot be null");
         }
         if (!this.location.containsKey(name)) {
             throw new IllegalArgumentException("Name is absent");
         }
-        this.location.put(name, new Address(street, house, flat));
+        this.location.put(name,address);
+    }
+
+    public void changeAddress(String name, String street, String house, String flat) {
+        changeAddress(name, new Address(street, house, flat));
     }
 
     public List<String> whoIsThere(String street) {

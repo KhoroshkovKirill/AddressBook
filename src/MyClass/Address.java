@@ -31,7 +31,7 @@ final class Address {
 
     @Override
     public String toString() {
-        return this.street +' '+ this.house +' '+ this.flat;
+        return "street: " + this.street + " house: " + this.house +" flat: " + this.flat;
     }
 
     @Override
@@ -42,9 +42,10 @@ final class Address {
         if (! (obj instanceof Address)) {
             return false;
         }
-        return (this.street.equals(((Address) obj).street) &&
-                this.house.equals(((Address) obj).house) &&
-                this.flat.equals(((Address) obj).flat));
+        final Address addr = (Address) obj;
+        return (this.street.equals(addr.street) &&
+                this.house.equals(addr.house) &&
+                this.flat.equals(addr.flat));
     }
 
     @Override
