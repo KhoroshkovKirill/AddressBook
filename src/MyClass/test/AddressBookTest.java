@@ -1,5 +1,7 @@
-package MyClass;
+package MyClass.test;
 
+import MyClass.main.Address;
+import MyClass.main.AddressBook;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -13,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class AddressBookTest {
     @Test
     public void addPerson(){
-        Map<String,Address> location = new HashMap<>();
+        Map<String, Address> location = new HashMap<>();
         Address shf = new Address("street","house","flat");
         location.put("name",shf);
         AddressBook ab = new AddressBook();

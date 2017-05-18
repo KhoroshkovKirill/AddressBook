@@ -1,9 +1,9 @@
-package MyClass;
+package MyClass.main;
 
 /**
  * Created by khoroshkovkirill on 16.02.17.
  */
-final class Address {
+final public class Address {
     final private String street;
     final private String house;
     final private String flat;
